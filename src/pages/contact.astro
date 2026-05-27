@@ -1,0 +1,299 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Контакты — Ремонт двигателей в Москве | Автосервис в Тушино";
+const description = "Контакты автосервиса по ремонту двигателей в Москве. Адрес, телефон, email, режим работы. Запишитесь на диагностику онлайн или по телефону.";
+
+const contacts = [
+  {
+    icon: "📍",
+    title: "Адрес",
+    lines: [
+      "г. Москва, Тушинская ул., д. 15, стр. 2",
+      "м. Тушинская, 5 минут пешком"
+    ]
+  },
+  {
+    icon: "📞",
+    title: "Телефон",
+    lines: [
+      "+7 (495) 123-45-67",
+      "+7 (926) 987-65-43"
+    ]
+  },
+  {
+    icon: "📧",
+    title: "Email",
+    lines: [
+      "info@motor-repair-moscow.ru",
+      "master@motor-repair-moscow.ru"
+    ]
+  },
+  {
+    icon: "🕐",
+    title: "Режим работы",
+    lines: [
+      "Пн–Пт: 8:00 – 20:00",
+      "Сб–Вс: 9:00 – 18:00"
+    ]
+  }
+];
+
+const workDays = [
+  { day: "Понедельник", hours: "8:00 – 20:00", isWeekend: false },
+  { day: "Вторник",     hours: "8:00 – 20:00", isWeekend: false },
+  { day: "Среда",       hours: "8:00 – 20:00", isWeekend: false },
+  { day: "Четверг",     hours: "8:00 – 20:00", isWeekend: false },
+  { day: "Пятница",     hours: "8:00 – 20:00", isWeekend: false },
+  { day: "Суббота",     hours: "9:00 – 18:00", isWeekend: true  },
+  { day: "Воскресенье", hours: "9:00 – 18:00", isWeekend: true  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+
+  <!-- Hero -->
+  <section class="bg-gray-900 text-white py-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-red-400 font-semibold uppercase tracking-widest text-sm mb-3">
+        Свяжитесь с нами
+      </p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Контакты
+      </h1>
+      <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+        Мы находимся в Москве и готовы принять ваш автомобиль в удобное для вас время.
+        Позвоните, напишите или приезжайте напрямую.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Cards -->
+  <section class="py-14 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {contacts.map((item) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-4xl mb-3">{item.icon}</div>
+            <h2 class="text-lg font-bold text-gray-800 mb-2">{item.title}</h2>
+            {item.lines.map((line) => (
+              <p class="text-gray-600 text-sm leading-relaxed">{line}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Map + Form -->
+  <section class="py-14 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <!-- Map placeholder -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+            Как нас найти
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Мы находимся в 5 минутах пешком от станции метро
+            <strong>«Тушинская»</strong>. Удобный въезд с Тушинской улицы,
+            просторная парковка для клиентов.
+          </p>
+
+          <!-- Fake map block -->
+          <div
+            class="w-full h-72 rounded-2xl bg-gray-200 flex items-center justify-center border border-gray-300 overflow-hidden"
+            aria-label="Карта проезда к автосервису"
+            role="img"
+          >
+            <div class="text-center text-gray-500">
+              <div class="text-5xl mb-2">🗺️</div>
+              <p class="font-semibold">Яндекс.Карты</p>
+              <p class="text-sm">Тушинская ул., д. 15, стр. 2</p>
+            </div>
+          </div>
+
+          <!-- Route tips -->
+          <ul class="mt-6 space-y-2 text-gray-700 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 font-bold mt-0.5">🚇</span>
+              <span>Метро <strong>«Тушинская»</strong> — выход №2, далее прямо 400 м</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 font-bold mt-0.5">🚗</span>
+              <span>На автомобиле по Тушинской ул. в сторону Сходненской, въезд со двора</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 font-bold mt-0.5">🅿️</span>
+              <span>Бесплатная парковка на территории сервиса на 20 мест</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+            Записаться на приём
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Оставьте заявку, и мы перезвоним в течение 15 минут, чтобы
+            подтвердить удобное время и уточнить детали.
+          </p>
+
+          <form
+            name="contact"
+            method="POST"
+            class="space-y-4"
+            novalidate
+            aria-label="Форма записи на приём"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                  Ваше имя <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Иван Иванов"
+                  class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                  Телефон <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="+7 (___) ___-__-__"
+                  class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="car" class="block text-sm font-medium text-gray-700 mb-1">
+                Марка и модель автомобиля
+              </label>
+              <input
+                type="text"
+                id="car"
+                name="car"
+                placeholder="Например: Toyota Camry 2018"
+                class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+              />
+            </div>
+
+            <div>
+              <label for="service" class="block text-sm font-medium text-gray-700 mb-1">
+                Необходимая услуга
+              </label>
+              <select
+                id="service"
+                name="service"
+                class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition bg-white"
+              >
+                <option value="">— Выберите услугу —</option>
+                <option value="diagnostics">Диагностика двигателя</option>
+                <option value="capital">Капитальный ремонт двигателя</option>
+                <option value="grm">Замена ремня/цепи ГРМ</option>
+                <option value="oil">Замена масла и фильтров</option>
+                <option value="turbo">Ремонт турбины</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                Комментарий
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                placeholder="Опишите проблему или задайте вопрос..."
+                class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition resize-none"
+              ></textarea>
+            </div>
+
+            <p class="text-xs text-gray-400">
+              Нажимая кнопку, вы соглашаетесь с{" "}
+              <a href="/privacy" class="underline hover:text-gray-600">
+                политикой конфиденциальности
+              </a>
+            </p>
+
+            <button
+              type="submit"
+              class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl transition-colors text-sm tracking-wide"
+            >
+              Записаться на приём
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Schedule -->
+  <section class="py-14 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">
+        График работы
+      </h2>
+      <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+        <table class="w-full text-sm" role="table" aria-label="График работы автосервиса">
+          <thead>
+            <tr class="bg-gray-900 text-white">
+              <th class="px-6 py-3 text-left font-semibold">День недели</th>
+              <th class="px-6 py-3 text-right font-semibold">Часы работы</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workDays.map((row, i) => (
+              <tr
+                class={[
+                  i % 2 === 0 ? "bg-white" : "bg-gray-50",
+                  row.isWeekend ? "text-red-600" : "text-gray-800"
+                ].join(" ")}
+              >
+                <td class="px-6 py-3 font-medium">{row.day}</td>
+                <td class="px-6 py-3 text-right font-semibold">{row.hours}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-4">
+        В праздничные дни режим работы может отличаться — уточняйте по телефону.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Strip -->
+  <section class="bg-red-600 py-12 text-white text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">
+        Нужна срочная помощь?
+      </h2>
+      <p class="text-red-100 mb-6">
+        Позвоните прямо сейчас — наши мастера ответят и помогут оценить
+        проблему ещё до приезда в сервис.
+      </p>
+      <a
+        href="tel:+74951234567"
+        class="inline-block bg-white text-red-600 font-bold px-8 py-3 rounded-full text-lg hover:bg-red-50 transition-colors"
+      >
+        +7 (495) 123-45-67
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

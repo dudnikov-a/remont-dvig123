@@ -1,0 +1,309 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "О нас — Ремонт двигателей в Москве | Автосервис в Тушино";
+const description = "Узнайте больше об автосервисе по ремонту двигателей в Москве. Опыт 15+ лет, квалифицированные мастера, современное оборудование и гарантия качества.";
+
+const stats = [
+  { value: "15+", label: "лет на рынке" },
+  { value: "3 000+", label: "отремонтированных двигателей" },
+  { value: "98%", label: "довольных клиентов" },
+  { value: "2 года", label: "гарантия на работы" },
+];
+
+const team = [
+  {
+    name: "Алексей Воронов",
+    role: "Главный механик",
+    experience: "Опыт работы 18 лет",
+    description: "Специализируется на капитальном ремонте двигателей европейских и азиатских автомобилей. Сертифицированный специалист.",
+    initials: "АВ",
+  },
+  {
+    name: "Дмитрий Савельев",
+    role: "Моторист",
+    experience: "Опыт работы 12 лет",
+    description: "Эксперт по диагностике и ремонту двигателей премиум-класса. Специалист по BMW, Mercedes-Benz и Audi.",
+    initials: "ДС",
+  },
+  {
+    name: "Игорь Петров",
+    role: "Диагност",
+    experience: "Опыт работы 10 лет",
+    description: "Профессиональная компьютерная диагностика любых неисправностей. Работает с оборудованием ведущих производителей.",
+    initials: "ИП",
+  },
+];
+
+const values = [
+  {
+    icon: "🏆",
+    title: "Качество",
+    description: "Используем только оригинальные запчасти и сертифицированные аналоги от проверенных поставщиков.",
+  },
+  {
+    icon: "🤝",
+    title: "Честность",
+    description: "Чёткая смета до начала работ, никаких скрытых платежей и неожиданных доплат по завершению.",
+  },
+  {
+    icon: "⚡",
+    title: "Оперативность",
+    description: "Соблюдаем сроки ремонта. Большинство работ выполняем в день обращения или на следующий день.",
+  },
+  {
+    icon: "🛡️",
+    title: "Гарантия",
+    description: "Предоставляем письменную гарантию на все виды выполненных работ и установленные запчасти сроком до 2 лет.",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+
+  <!-- Hero секция -->
+  <section
+    class="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-20 px-4"
+    aria-label="О компании — заголовок"
+  >
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-red-400 font-semibold uppercase tracking-widest text-sm mb-4">
+        О нас
+      </p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Автосервис с душой и&nbsp;опытом
+      </h1>
+      <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        С 2009 года мы помогаем автовладельцам Москвы решать проблемы с двигателями быстро,
+        качественно и по честным ценам. Каждый автомобиль — это наша ответственность.
+      </p>
+    </div>
+  </section>
+
+  <!-- Статистика -->
+  <section
+    class="bg-red-600 py-12 px-4"
+    aria-label="Показатели компании"
+  >
+    <div class="max-w-5xl mx-auto">
+      <ul class="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
+        {stats.map((stat) => (
+          <li>
+            <p class="text-4xl font-bold mb-1">{stat.value}</p>
+            <p class="text-red-100 text-sm uppercase tracking-wide">{stat.label}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- История компании -->
+  <section
+    class="py-20 px-4 bg-white"
+    aria-labelledby="history-heading"
+  >
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Текст -->
+        <div>
+          <p class="text-red-600 font-semibold uppercase tracking-widest text-sm mb-3">
+            Наша история
+          </p>
+          <h2
+            id="history-heading"
+            class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 leading-tight"
+          >
+            Начали с малого —<br />выросли в профессионалов
+          </h2>
+          <div class="space-y-4 text-slate-600 leading-relaxed">
+            <p>
+              Наш автосервис был основан в 2009 году в районе Тушино. Начинали мы как небольшая
+              мастерская с двумя подъёмниками и командой из трёх механиков-энтузиастов, влюблённых
+              в своё дело.
+            </p>
+            <p>
+              За прошедшие годы мы выросли в полноценный специализированный центр по ремонту
+              двигателей. Сегодня в нашем распоряжении — современное диагностическое оборудование,
+              собственный токарный участок и команда из 8 сертифицированных специалистов.
+            </p>
+            <p>
+              Мы намеренно сохраняем узкую специализацию: ремонтируем только двигатели. Это
+              позволяет нам достигать максимального качества и глубокой экспертизы в своей области,
+              а не распыляться на всё подряд.
+            </p>
+          </div>
+        </div>
+
+        <!-- Визуальный блок -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-slate-100 rounded-2xl p-6 flex flex-col justify-center items-center text-center aspect-square">
+            <span class="text-5xl mb-3" aria-hidden="true">🏭</span>
+            <p class="font-semibold text-slate-700 text-sm">Собственный сервисный центр</p>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-6 flex flex-col justify-center items-center text-center aspect-square">
+            <span class="text-5xl mb-3" aria-hidden="true">🔬</span>
+            <p class="font-semibold text-slate-700 text-sm">Современная диагностика</p>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-6 flex flex-col justify-center items-center text-center aspect-square">
+            <span class="text-5xl mb-3" aria-hidden="true">🔩</span>
+            <p class="font-semibold text-slate-700 text-sm">Токарный и фрезерный участок</p>
+          </div>
+          <div class="bg-slate-100 rounded-2xl p-6 flex flex-col justify-center items-center text-center aspect-square">
+            <span class="text-5xl mb-3" aria-hidden="true">📋</span>
+            <p class="font-semibold text-slate-700 text-sm">Официальная гарантия на работы</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Наши ценности -->
+  <section
+    class="py-20 px-4 bg-gray-50"
+    aria-labelledby="values-heading"
+  >
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-red-600 font-semibold uppercase tracking-widest text-sm mb-3">
+          Наши принципы
+        </p>
+        <h2
+          id="values-heading"
+          class="text-3xl md:text-4xl font-bold text-slate-800"
+        >
+          На чём строится наша работа
+        </h2>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <li class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow duration-300">
+            <span class="text-4xl block mb-4" aria-hidden="true">{value.icon}</span>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">{value.title}</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">{value.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Команда -->
+  <section
+    class="py-20 px-4 bg-white"
+    aria-labelledby="team-heading"
+  >
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-red-600 font-semibold uppercase tracking-widest text-sm mb-3">
+          Специалисты
+        </p>
+        <h2
+          id="team-heading"
+          class="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
+        >
+          Наша команда
+        </h2>
+        <p class="text-slate-500 max-w-xl mx-auto">
+          За каждым отремонтированным двигателем стоит профессионал, который знает своё дело
+          и гордится результатом своего труда.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {team.map((member) => (
+          <li class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow duration-300">
+            <!-- Аватар -->
+            <div
+              class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xl mb-4"
+              aria-hidden="true"
+            >
+              {member.initials}
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">{member.name}</h3>
+            <p class="text-red-600 font-medium text-sm mb-1">{member.role}</p>
+            <p class="text-slate-400 text-xs mb-3">{member.experience}</p>
+            <p class="text-slate-600 text-sm leading-relaxed">{member.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Оборудование -->
+  <section
+    class="py-20 px-4 bg-slate-800 text-white"
+    aria-labelledby="equipment-heading"
+  >
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-red-400 font-semibold uppercase tracking-widest text-sm mb-3">
+          Оснащение
+        </p>
+        <h2
+          id="equipment-heading"
+          class="text-3xl md:text-4xl font-bold mb-4"
+        >
+          Современное оборудование
+        </h2>
+        <p class="text-slate-300 max-w-xl mx-auto">
+          Мы инвестируем в профессиональное оборудование, чтобы обеспечить точную диагностику
+          и качественный ремонт каждого двигателя.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: "💻", title: "Компьютерная диагностика", desc: "Bosch KTS 560, Launch X431 Pro — считываем и расшифровываем ошибки любых систем." },
+          { icon: "⚙️", title: "Токарный станок", desc: "Расточка блоков цилиндров, шлифовка коленвалов и распредвалов с допуском до 0,01 мм." },
+          { icon: "🔍", title: "Эндоскопия двигателя", desc: "Видеодиагностика внутренних полостей без разборки — экономим ваше время и деньги." },
+          { icon: "📐", title: "Стенд для обкатки", desc: "Обкатка и проверка двигателя под нагрузкой перед установкой в автомобиль." },
+          { icon: "🧪", title: "Опрессовка блока", desc: "Проверка герметичности блока цилиндров и головки блока под давлением." },
+          { icon: "🔧", title: "Динамометрические ключи", desc: "Точная затяжка всех резьбовых соединений согласно заводским регламентам." },
+        ].map((item) => (
+          <li class="bg-slate-700 rounded-xl p-5 flex gap-4 items-start border border-slate-600">
+            <span class="text-3xl flex-shrink-0" aria-hidden="true">{item.icon}</span>
+            <div>
+              <h3 class="font-semibold text-white mb-1">{item.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section
+    class="py-20 px-4 bg-red-600 text-white text-center"
+    aria-label="Призыв к действию"
+  >
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Доверьте двигатель профессионалам
+      </h2>
+      <p class="text-red-100 text-lg mb-8">
+        Запишитесь на диагностику прямо сейчас — определим причину неисправности
+        и дадим честную оценку стоимости ремонта.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="tel:+74993467079"
+          class="bg-white text-red-600 font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition-colors duration-200 text-lg"
+          aria-label="Позвонить нам по телефону"
+        >
+          +7 (499) 346 7079
+        </a>
+        <a
+          href="/contacts"
+          class="border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-red-700 transition-colors duration-200 text-lg"
+        >
+          Наши контакты
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

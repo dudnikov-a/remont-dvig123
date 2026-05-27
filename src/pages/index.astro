@@ -1,0 +1,762 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Ремонт двигателей в Москве — профессиональный автосервис";
+const description = "Профессиональный ремонт двигателей в Москве. Опыт более 15 лет, гарантия на работы, современное оборудование. Звоните: +7 (499) 346 7079.";
+
+const advantages = [
+  {
+    icon: "🔧",
+    title: "Опыт 15+ лет",
+    description: "Более 15 лет успешной работы в сфере ремонта и обслуживания двигателей любой сложности.",
+  },
+  {
+    icon: "🛡️",
+    title: "Гарантия на работы",
+    description: "Предоставляем официальную гарантию на все выполненные работы и установленные запчасти.",
+  },
+  {
+    icon: "⚙️",
+    title: "Современное оборудование",
+    description: "Используем профессиональное диагностическое и ремонтное оборудование ведущих мировых брендов.",
+  },
+];
+
+const services = [
+  {
+    icon: "🔍",
+    title: "Диагностика двигателя",
+    description: "Компьютерная и визуальная диагностика двигателя с полным отчётом о техническом состоянии.",
+    price: "от 1 500 ₽",
+  },
+  {
+    icon: "🔩",
+    title: "Капитальный ремонт",
+    description: "Полная разборка, дефектовка, замена изношенных деталей и сборка двигателя с регулировкой.",
+    price: "от 25 000 ₽",
+  },
+  {
+    icon: "🛢️",
+    title: "Замена масла и фильтров",
+    description: "Замена моторного масла и фильтров с использованием оригинальных расходных материалов.",
+    price: "от 2 000 ₽",
+  },
+  {
+    icon: "💨",
+    title: "Ремонт турбины",
+    description: "Диагностика, ремонт и замена турбокомпрессора для бензиновых и дизельных двигателей.",
+    price: "от 8 000 ₽",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Ремонт двигателей в Москве",
+  "description": description,
+  "url": "https://remont-dvigatelei-moskva.ru",
+  "telephone": "+74993467079",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Тушино, дом 20",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "55.8227",
+    "longitude": "37.3969"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "10:00",
+      "closes": "18:00"
+    }
+  ],
+  "priceRange": "₽₽",
+  "image": "https://remont-dvigatelei-moskva.ru/og-image.jpg",
+  "sameAs": []
+};
+---
+
+<BaseLayout title={title} description={description}>
+
+  <!-- JSON-LD -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+    slot="head"
+  />
+
+  <!-- ========== HERO ========== -->
+  <section
+    class="hero"
+    aria-label="Главный баннер"
+  >
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Автосервис в Москве · Район Тушино</p>
+      <h1 class="hero__title">
+        Ремонт двигателей<br />
+        <span class="hero__title--accent">любой сложности</span>
+      </h1>
+      <p class="hero__subtitle">
+        Профессиональная диагностика и ремонт двигателей для легковых и грузовых автомобилей.
+        Гарантия на все виды работ. Опыт более&nbsp;15&nbsp;лет.
+      </p>
+      <div class="hero__actions">
+        <a href="/contacts" class="btn btn--primary">
+          Записаться на ремонт
+        </a>
+        <a href="/services" class="btn btn--outline">
+          Наши услуги
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ПРЕИМУЩЕСТВА ========== -->
+  <section class="section advantages" aria-labelledby="advantages-heading">
+    <div class="container">
+      <header class="section__header">
+        <h2 class="section__title" id="advantages-heading">
+          Почему выбирают нас
+        </h2>
+        <p class="section__subtitle">
+          Мы работаем для того, чтобы ваш автомобиль служил долго и надёжно
+        </p>
+      </header>
+
+      <ul class="advantages__grid" role="list">
+        {advantages.map((item) => (
+          <li class="card card--advantage">
+            <span class="card__icon" aria-hidden="true">{item.icon}</span>
+            <h3 class="card__title">{item.title}</h3>
+            <p class="card__text">{item.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== УСЛУГИ ========== -->
+  <section class="section services bg-light" aria-labelledby="services-heading">
+    <div class="container">
+      <header class="section__header">
+        <h2 class="section__title" id="services-heading">
+          Наши услуги
+        </h2>
+        <p class="section__subtitle">
+          Полный спектр работ по ремонту и обслуживанию двигателей
+        </p>
+      </header>
+
+      <ul class="services__grid" role="list">
+        {services.map((service) => (
+          <li class="card card--service">
+            <span class="card__icon" aria-hidden="true">{service.icon}</span>
+            <h3 class="card__title">{service.title}</h3>
+            <p class="card__text">{service.description}</p>
+            <p class="card__price">{service.price}</p>
+            <a href="/services" class="card__link" aria-label={`Подробнее об услуге: ${service.title}`}>
+              Подробнее →
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="section__footer">
+        <a href="/services" class="btn btn--primary">
+          Все услуги
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== О НАС ========== -->
+  <section class="section about" aria-labelledby="about-heading">
+    <div class="container about__inner">
+      <div class="about__text">
+        <span class="section__eyebrow">О компании</span>
+        <h2 class="section__title" id="about-heading">
+          Надёжный партнёр для вашего автомобиля
+        </h2>
+        <p>
+          Автосервис «Ремонт двигателей в Москве» работает с 2009 года в районе Тушино.
+          За это время мы выполнили более <strong>5 000 успешных ремонтов</strong> двигателей
+          отечественных и иностранных автомобилей.
+        </p>
+        <p>
+          Наша команда — это сертифицированные специалисты с многолетним опытом, которые
+          постоянно повышают квалификацию и следят за новейшими технологиями в области
+          двигателестроения. Мы работаем с бензиновыми, дизельными и гибридными двигателями.
+        </p>
+        <p>
+          Мы используем только оригинальные запчасти и расходные материалы проверенных
+          производителей. На все выполненные работы предоставляется письменная гарантия.
+        </p>
+        <a href="/about" class="btn btn--primary" style="margin-top: 1.5rem;">
+          Узнать больше о нас
+        </a>
+      </div>
+
+      <div class="about__stats" aria-label="Ключевые показатели компании">
+        <div class="stat">
+          <span class="stat__number">15+</span>
+          <span class="stat__label">лет опыта</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">5 000+</span>
+          <span class="stat__label">выполненных ремонтов</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">98%</span>
+          <span class="stat__label">довольных клиентов</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">12</span>
+          <span class="stat__label">мастеров в команде</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== КОНТАКТЫ ========== -->
+  <section class="section contacts bg-light" aria-labelledby="contacts-heading">
+    <div class="container">
+      <header class="section__header">
+        <h2 class="section__title" id="contacts-heading">
+          Как нас найти
+        </h2>
+        <p class="section__subtitle">
+          Мы находимся в удобном месте — приезжайте или звоните
+        </p>
+      </header>
+
+      <div class="contacts__inner">
+        <address class="contacts__info">
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true">📍</span>
+            <div>
+              <strong class="contact-item__label">Адрес</strong>
+              <span class="contact-item__value">
+                г. Москва, район Тушино, дом 20
+              </span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true">📞</span>
+            <div>
+              <strong class="contact-item__label">Телефон</strong>
+              <a
+                href="tel:+74993467079"
+                class="contact-item__value contact-item__phone"
+                aria-label="Позвонить нам: плюс 7 499 346 70 79"
+              >
+                +7 (499) 346 70 79
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true">🕐</span>
+            <div>
+              <strong class="contact-item__label">Режим работы</strong>
+              <span class="contact-item__value">
+                Пн–Пт: 9:00 — 20:00<br />
+                Сб: 10:00 — 18:00<br />
+                Вс: выходной
+              </span>
+            </div>
+          </div>
+        </address>
+
+        <div class="contacts__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.0!2d37.3969!3d55.8227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zVHVzaGlubywgTW9zY293!5e0!3m2!1sru!2sru!4v1"
+            width="100%"
+            height="300"
+            style="border:0; border-radius: 12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Местоположение автосервиса на карте"
+            aria-label="Карта с расположением автосервиса в районе Тушино"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section cta" aria-labelledby="cta-heading">
+    <div class="container cta__inner">
+      <h2 class="cta__title" id="cta-heading">
+        Нужен ремонт двигателя?
+      </h2>
+      <p class="cta__text">
+        Позвоните нам прямо сейчас или запишитесь онлайн — мы проведём
+        бесплатную первичную консультацию и оценим стоимость работ.
+      </p>
+      <div class="cta__actions">
+        <a
+          href="tel:+74993467079"
+          class="btn btn--white"
+          aria-label="Позвонить: плюс 7 499 346 70 79"
+        >
+          📞 +7 (499) 346 70 79
+        </a>
+        <a href="/contacts" class="btn btn--outline-white">
+          Записаться онлайн
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    overflow: hidden;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f87171;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title--accent {
+    color: #f87171;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 5rem 0;
+  }
+
+  .bg-light {
+    background-color: #f8fafc;
+  }
+
+  .section__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section__eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #dc2626;
+    margin-bottom: 0.75rem;
+  }
+
+  .section__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section__subtitle {
+    font-size: 1.0625rem;
+    color: #64748b;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .section__footer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    list-style: none;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  .card__icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .card__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+  }
+
+  .card__text {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .card__price {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 1rem;
+  }
+
+  .card__link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #dc2626;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .card__link:hover {
+    color: #b91c1c;
+  }
+
+  /* ── GRIDS ── */
+  .advantages__grid,
+  .services__grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .advantages__grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  /* ── ABOUT ── */
+  .about__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about__text p {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .about__text .section__title {
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat {
+    background: #ffffff;
+    border: 2px solid #fee2e2;
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .stat:hover {
+    border-color: #dc2626;
+    transform: translateY(-2px);
+  }
+
+  .stat__number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #dc2626;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat__label {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  /* ── CONTACTS ── */
+  .contacts__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contacts__info {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-item__icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .contact-item__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 0.375rem;
+  }
+
+  .contact-item__value {
+    font-size: 1rem;
+    color: #1e293b;
+    line-height: 1.6;
+  }
+
+  .contact-item__phone {
+    text-decoration: none;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #dc2626;
+    transition: color 0.2s;
+  }
+
+  .contact-item__phone:hover {
+    color: #b91c1c;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  }
+
+  .cta__inner {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta__text {
+    font-size: 1.0625rem;
+    color: #fecaca;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn--primary {
+    background-color: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+  }
+
+  .btn--primary:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
+  }
+
+  .btn--outline {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .btn--outline:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: #ffffff;
+  }
+
+  .btn--white {
+    background-color: #ffffff;
+    color: #dc2626;
+    border-color: #ffffff;
+  }
+
+  .btn--white:hover {
+    background-color: #fef2f2;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .btn--outline-white {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.7);
+  }
+
+  .btn--outline-white:hover {
+    background-color: rgba(255,255,255,0.15);
+    border-color: #ffffff;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .contacts__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .hero {
+      min-height: 100svh;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .about__stats {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cta__actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>
